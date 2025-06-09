@@ -108,10 +108,10 @@ class PubliNListActivity : AppCompatActivity() {
             }.onFailure { exception ->
                 Toast.makeText(
                     this,
-                    "Mostrando Mascotas",
+                    "Mostrando Publicaciones",
                     Toast.LENGTH_LONG
                 ).show()
-                Log.e("MascotaListActivity", "Error loading pets", exception)
+                Log.e("MascotaListActivity", "Error loading Publicacion", exception)
             }
         }
 
@@ -163,8 +163,8 @@ class PubliNListActivity : AppCompatActivity() {
 
     private fun showDeleteConfirmationDialog(publinNId: String) {
         AlertDialog.Builder(this)
-            .setTitle("Eliminar Mascota")
-            .setMessage("¿Estás seguro de que quieres eliminar esta mascota? Esta acción no se puede deshacer.")
+            .setTitle("Eliminar Publicacion")
+            .setMessage("¿Estás seguro de que quieres eliminar esta Publicacion? Esta acción no se puede deshacer.")
             .setPositiveButton("Eliminar") { _, _ ->
                 publiNListViewModel.deletePubliN(publinNId)
             }

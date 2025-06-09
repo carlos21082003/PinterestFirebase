@@ -19,7 +19,7 @@ class PubliNAddEditViewModel (
     val saveResult: LiveData<Result<Boolean>> = _saveResult
 
     /**
-     * Guarda una mascota. Si la mascota tiene un ID, se actualizará. Si no tiene ID, se añadirá.
+     * Guarda una Publicacion. Si la Publicacion tiene un ID, se actualizará. Si no tiene ID, se añadirá.
      * @param publiN La mascota a guardar.
      */
     fun savePubliN(publiN: PublicacionN) {

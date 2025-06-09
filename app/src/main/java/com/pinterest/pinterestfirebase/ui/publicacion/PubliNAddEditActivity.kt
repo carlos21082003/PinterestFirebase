@@ -64,10 +64,10 @@ class PubliNAddEditActivity : AppCompatActivity() {
         // Observa el resultado de la operación de guardar (añadir/actualizar)
         addEditPubliNViewModel.saveResult.observe(this) { result ->
             result.onSuccess {
-                Toast.makeText(this, "Mascota guardada exitosamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Publicacion guardada exitosamente", Toast.LENGTH_SHORT).show()
                 finish() // Cierra la actividad y vuelve a la lista de mascotas
             }.onFailure { exception ->
-                Toast.makeText(this, "Error al guardar mascota: ${exception.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Error al guardar Publicacion: ${exception.message}", Toast.LENGTH_LONG).show()
             }
         }
 
