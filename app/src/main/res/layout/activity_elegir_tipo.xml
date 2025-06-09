@@ -57,22 +57,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btnIrPerfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:padding="16dp"
-        android:textSize="20sp"
-        android:text="@string/ir_perfil"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/RedButtons"
-        app:layout_constraintTop_toBottomOf="@id/btnAgregar"
-        app:layout_constraintStart_toStartOf="parent"
-        />
 
     <!-- Nav -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

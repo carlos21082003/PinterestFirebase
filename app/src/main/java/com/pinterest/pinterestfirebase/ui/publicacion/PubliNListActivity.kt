@@ -14,8 +14,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.pinterest.pinterestfirebase.R
 import com.pinterest.pinterestfirebase.data.model.PublicacionN
 import com.pinterest.pinterestfirebase.data.repository.AuthRepository
 import com.pinterest.pinterestfirebase.data.repository.PubliNRepository
@@ -63,6 +65,27 @@ class PubliNListActivity : AppCompatActivity() {
 
         // Configura los listeners de los botones
         setupButtonListeners()
+
+        initUI()
+    }
+
+    private fun initUI() {
+
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+//        bottomNavigation.selectedItemId = R.id.nav_profile
+
+        // funcion para ir a agregar desde el nav
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+
+                R.id.nav_add -> {
+                    startActivity(Intent(this, ElegirTipoActivity ::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -146,10 +169,11 @@ class PubliNListActivity : AppCompatActivity() {
         }
 
         // Configura botón para ir a la vista de agregar
-        binding.fabAddPet.setOnClickListener {
-            val intent = Intent(this, PubliNAddEditActivity::class.java)
-            startActivity(intent)
-        }
+        //Proximo boton para ir a la vista del foro
+//        binding.fabAddPet.setOnClickListener {
+//            val intent = Intent(this, PubliNAddEditActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     private fun editPet(publiN: PublicacionN) {

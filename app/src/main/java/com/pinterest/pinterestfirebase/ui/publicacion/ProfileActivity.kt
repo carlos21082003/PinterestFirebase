@@ -28,7 +28,7 @@ class ProfileActivity : AppCompatActivity() {
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-//        bottomNavigation.selectedItemId = R.id.nav_profile
+        bottomNavigation.selectedItemId = R.id.nav_profile
 
         btnMisPubliN.setOnClickListener {
             irAgregar()

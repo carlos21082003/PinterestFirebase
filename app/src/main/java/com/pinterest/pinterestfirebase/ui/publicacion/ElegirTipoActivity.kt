@@ -24,18 +24,14 @@ class ElegirTipoActivity : AppCompatActivity() {
     }
     private fun initUI() {
         val btnSubirN = findViewById<Button>(R.id.btnPNormal)
-//        val btnIrPerfil = findViewById<Button>(R.id.btnIrPerfil)
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         btnSubirN.setOnClickListener {
             irAgregar()
         }
-//        btnIrPerfil.setOnClickListener {
-//            irPerfil()
-//        }
 
-//        bottomNavigation.selectedItemId = R.id.nav_profile
+        bottomNavigation.selectedItemId = R.id.nav_add
 
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -52,14 +48,8 @@ class ElegirTipoActivity : AppCompatActivity() {
         }
     }
 
-
-
-
     private fun irAgregar() {
         startActivity(Intent(this, PubliNAddEditActivity::class.java))
     }
 
-//    private fun irPerfil() {
-//        startActivity(Intent(this, ProfileActivity::class.java))
-//    }
 }
