@@ -88,6 +88,31 @@
                         android:textColorHint="@color/TextCamposGris"
                         />
 
+                    <!-- Botón para seleccionar imagen -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSelectImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Seleccionar Imagen"
+                        android:textSize="14sp"
+                        android:backgroundTint="@color/GrisButtons"
+                        android:textColor="@color/black"
+                        app:cornerRadius="8dp"
+                        app:iconGravity="textStart" />
+
+                    <!-- ImageView para mostrar la imagen seleccionada -->
+                    <ImageView
+                        android:id="@+id/ivSelectedImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/campos"
+                        android:visibility="gone"
+                        android:contentDescription="Imagen seleccionada" />
+
+
                 </com.google.android.material.textfield.TextInputLayout>
 
 

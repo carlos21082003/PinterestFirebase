@@ -29,4 +29,6 @@
     <string name="eliminar_publicacion_normal">Eliminar publicacion normal</string>
     <string name="agregar_publicaciones">Agregar Publicaciones</string>
     <string name="subir">Subir</string>
+    <string name="perfil">Perfil</string>
+    <string name="editar">Editar</string>
 </resources>
