@@ -55,6 +55,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/nombre_de_la_publicacion"
                     android:layout_marginBottom="16dp"
+                    android:textColorHint="@color/white"
+                    app:hintTextColor="@color/white"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -62,30 +64,37 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapWords"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
                         android:background="@drawable/campos"
-                        android:textColorHint="@color/TextCamposGris"
                         android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Campo Tipo -->
+                <!-- Campo Descripcion -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/descripcion"
                     android:layout_marginBottom="16dp"
+                    android:textColorHint="@color/white"
+                    app:hintTextColor="@color/white"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/aDescripcion"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:inputType="textCapWords"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
                         android:background="@drawable/campos"
-                        android:textColorHint="@color/TextCamposGris"
+                        android:gravity="top|start"
+                        android:minLines="3"
+                        android:maxLines="6"
+                        android:scrollbars="vertical"
+                        android:overScrollMode="always"
                         />
 
                     <!-- Botón para seleccionar imagen -->
@@ -94,12 +103,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="10dp"
-                        android:text="Seleccionar Imagen"
+                        android:text="@string/seleccionar_imagen"
                         android:textSize="14sp"
                         android:backgroundTint="@color/GrisButtons"
                         android:textColor="@color/black"
                         app:cornerRadius="8dp"
-                        app:iconGravity="textStart" />
+                        />
 
                     <!-- ImageView para mostrar la imagen seleccionada -->
                     <ImageView
@@ -110,13 +119,9 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/campos"
                         android:visibility="gone"
-                        android:contentDescription="Imagen seleccionada" />
-
+                        android:contentDescription="@string/imagen_seleccionada" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
             </LinearLayout>
 
@@ -150,7 +155,6 @@
             android:backgroundTint="@color/GrisButtons"
             android:text="@string/cancelar"
             android:textSize="16sp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             app:cornerRadius="12dp"
             android:layout_marginTop="16dp"
             android:layout_marginStart="8dp"

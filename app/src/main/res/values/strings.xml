@@ -31,4 +31,6 @@
     <string name="subir">Subir</string>
     <string name="perfil">Perfil</string>
     <string name="editar">Editar</string>
+    <string name="seleccionar_imagen">Seleccionar Imagen</string>
+    <string name="imagen_seleccionada">Imagen seleccionada</string>
 </resources>

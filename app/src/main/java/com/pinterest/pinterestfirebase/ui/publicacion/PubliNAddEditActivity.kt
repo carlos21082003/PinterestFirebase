@@ -47,7 +47,7 @@ class PubliNAddEditActivity : AppCompatActivity() {
         }
 
         // Comprueba si estamos en modo edición (si se pasa un ID de mascota)
-        publinId = intent.getStringExtra("PET_ID")
+        publinId = intent.getStringExtra("PUBLICACION_ID")
         if (publinId != null) {
 
             // Si hay un ID, estamos editando una mascota existente
