@@ -14,21 +14,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/back"
         android:padding="16dp">
 
-        <!-- Icono de mascota -->
+        <!-- Icono de publiccaion -->
         <ImageView
-            android:id="@+id/ivPetIcon"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:padding="12dp"
-            android:scaleType="centerInside"
-            app:tint="@android:color/white"
+            android:id="@+id/ivImagen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="4dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/image_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- Nombre de la mascota -->
+        <!-- Nombre de la publicacion -->
         <TextView
             android:id="@+id/tvNombre"
             android:layout_width="0dp"
@@ -38,15 +39,15 @@
             android:text="@string/nombre"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:maxLines="1"
             android:ellipsize="end"
-            app:layout_constraintStart_toEndOf="@id/ivPetIcon"
-            app:layout_constraintTop_toTopOf="@id/ivPetIcon"
+            app:layout_constraintStart_toEndOf="@id/ivImagen"
+            app:layout_constraintTop_toTopOf="@id/ivImagen"
             app:layout_constraintEnd_toStartOf="@id/btnDeletePuN"
-            tools:text="Firulais" />
+            tools:text="Publicacion" />
 
-        <!-- Tipo de mascota -->
+        <!-- descripcion de la publicacion -->
         <TextView
             android:id="@+id/tvPublNDes"
             android:layout_width="0dp"
@@ -60,10 +61,10 @@
             android:drawablePadding="6dp"
             android:gravity="center_vertical"
             app:drawableTint="@android:color/darker_gray"
-            app:layout_constraintStart_toEndOf="@id/ivPetIcon"
+            app:layout_constraintStart_toEndOf="@id/ivImagen"
             app:layout_constraintTop_toBottomOf="@id/tvNombre"
             app:layout_constraintEnd_toStartOf="@id/btnDeletePuN"
-            tools:text="Tipo: Perro" />
+            tools:text="Descripcion" />
 
 
         <!-- Botón Eliminar -->
@@ -72,7 +73,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
-            android:background="@color/white"
+            android:background="@color/back"
             android:src="@drawable/ic_delete"
             android:padding="8dp"
             android:contentDescription="@string/eliminar_publicacion_normal"
@@ -86,11 +87,11 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="4dp"
-            android:background="@color/white"
+            android:background="@color/back"
             android:src="@drawable/ic_edit"
             android:padding="8dp"
             android:contentDescription="@string/editar_publicacion_normal"
-            app:tint="@android:color/holo_blue_light"
+            app:tint="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnDeletePuN" />
 

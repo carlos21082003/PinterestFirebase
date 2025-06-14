@@ -181,6 +181,7 @@ class PubliNListActivity : AppCompatActivity() {
             putExtra("PUBLICACION_ID", publiN.id)
             putExtra("PUBLICACION_NAME", publiN.name)
             putExtra("PUBLICACION_DESCRIPCION", publiN.descripcion)
+            putExtra("PUBLICACION_IMAGE", publiN.imageBase64)
         }
         startActivity(intent)
     }

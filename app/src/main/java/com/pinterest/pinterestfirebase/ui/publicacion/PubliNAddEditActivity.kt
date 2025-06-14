@@ -1,9 +1,15 @@
 package com.pinterest.pinterestfirebase.ui.publicacion
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,12 +19,22 @@ import com.pinterest.pinterestfirebase.data.model.PublicacionN
 import com.pinterest.pinterestfirebase.data.repository.AuthRepository
 import com.pinterest.pinterestfirebase.data.repository.PubliNRepository
 import com.pinterest.pinterestfirebase.databinding.ActivityPubliNaddEditBinding
+import java.io.ByteArrayOutputStream
 
 class PubliNAddEditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPubliNaddEditBinding
     private lateinit var addEditPubliNViewModel: PubliNAddEditViewModel
     private var publinId: String? = null // Para almacenar el ID de la mascota si estamos editando
+    private var selectedImageBase64: String = ""
 
+    // Launcher para seleccionar imagen de la galería
+    private val imagePickerLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let {
+            handleSelectedImage(it)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +42,6 @@ class PubliNAddEditActivity : AppCompatActivity() {
 
         binding = ActivityPubliNaddEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         // Inicializa Firebase Auth y Firestore
         val firebaseAuth = FirebaseAuth.getInstance()
@@ -39,6 +54,12 @@ class PubliNAddEditActivity : AppCompatActivity() {
         // Inicializa el ViewModel con una Factory
         addEditPubliNViewModel = ViewModelProvider(this, AddEditPubliNViewModelFactory(publiNRepository, authRepository))
             .get(PubliNAddEditViewModel::class.java)
+
+
+        // Configurar botón para seleccionar imagen
+        binding.btnSelectImage.setOnClickListener {
+            imagePickerLauncher.launch("image/*")
+        }
 
         //Boton para cancelar y volver a la lista de mascotas
         binding.btnCancel.setOnClickListener {
@@ -56,6 +77,12 @@ class PubliNAddEditActivity : AppCompatActivity() {
             binding.nProducto.setText(intent.getStringExtra("PUBLICACION_NAME"))
             binding.aDescripcion.setText(intent.getStringExtra("PUBLICACION_DESCRIPCION"))
 
+            // Cargar imagen si existe
+            val imageBase64 = intent.getStringExtra("PUBLICACION_IMAGE")
+            if (!imageBase64.isNullOrEmpty()) {
+                selectedImageBase64 = imageBase64
+                loadImageFromBase64(imageBase64)
+            }
         } else {
             // Si no hay ID, estamos añadiendo una nueva mascota
             binding.tvTitle.text = "Añadir Nueva Publicacion"
@@ -79,6 +106,75 @@ class PubliNAddEditActivity : AppCompatActivity() {
 
     }
 
+    private fun handleSelectedImage(uri: Uri) {
+        try {
+            // Convertir la imagen a Base64
+            val imageBase64 = convertImageToBase64(uri)
+            if (imageBase64.isNotEmpty()) {
+                selectedImageBase64 = imageBase64
+                loadImageFromBase64(imageBase64)
+                Toast.makeText(this, "Imagen seleccionada correctamente", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Error al procesar la imagen", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error al seleccionar imagen: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun convertImageToBase64(uri: Uri): String {
+        return try {
+            val inputStream = contentResolver.openInputStream(uri)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+
+            // Redimensionar la imagen para optimizar el tamaño
+            val resizedBitmap = resizeBitmap(bitmap, 800, 600)
+
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream)
+            val byteArray = byteArrayOutputStream.toByteArray()
+
+            Base64.encodeToString(byteArray, Base64.DEFAULT)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ""
+        }
+    }
+
+    private fun resizeBitmap(bitmap: Bitmap, maxWidth: Int, maxHeight: Int): Bitmap {
+        val width = bitmap.width
+        val height = bitmap.height
+
+        val bitmapRatio = width.toFloat() / height.toFloat()
+        val targetRatio = maxWidth.toFloat() / maxHeight.toFloat()
+
+        val targetWidth: Int
+        val targetHeight: Int
+
+        if (bitmapRatio > targetRatio) {
+            targetWidth = maxWidth
+            targetHeight = (maxWidth / bitmapRatio).toInt()
+        } else {
+            targetHeight = maxHeight
+            targetWidth = (maxHeight * bitmapRatio).toInt()
+        }
+
+        return Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, true)
+    }
+
+    private fun loadImageFromBase64(base64String: String) {
+        try {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+
+            binding.ivSelectedImage.setImageBitmap(bitmap)
+            binding.ivSelectedImage.visibility = View.VISIBLE
+        } catch (e: Exception) {
+            e.printStackTrace()
+            binding.ivSelectedImage.visibility = View.GONE
+        }
+    }
+
     /**
      * Recopila los datos de los campos de entrada y llama al ViewModel para guardar la mascota.
      */
@@ -99,7 +195,8 @@ class PubliNAddEditActivity : AppCompatActivity() {
             id = publinId ?: "", // Si petId es nulo, se usa una cadena vacía (para nueva mascota)
             name = name,
             descripcion = descripcion,
-            ownerId = "" // El ViewModel se encargará de asignar el ownerId
+            ownerId = "", // El ViewModel se encargará de asignar el ownerId
+            imageBase64 = selectedImageBase64
         )
 
         addEditPubliNViewModel.savePubliN(publiN)
