@@ -13,6 +13,7 @@
     <string name="cerrar_sesion">Cerrar Sesión</string>
     <string name="crea_la_vida_que_deseas_en_pinterest">Crea la vida que deseas en Pinterest</string>
     <string name="p_vender">Publicar un producto que quieres vender</string>
+    <string name="p_Foro">FORO</string>
     <string name="p_normal">Publicar una imagen para que todos la puedan ver</string>
     <string name="ir_perfil">Ir al Perfil</string>
     <string name="agregar_descripcion">Agregar descripcion</string>
@@ -31,4 +32,5 @@
     <string name="subir">Subir</string>
     <string name="perfil">Perfil</string>
     <string name="editar">Editar</string>
+    <string name="title_activity_foro">ForoActivity</string>
 </resources>

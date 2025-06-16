@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.pinterest.pinterestfirebase.ForoActivity
 import com.pinterest.pinterestfirebase.R
 import com.pinterest.pinterestfirebase.data.model.PublicacionN
 import com.pinterest.pinterestfirebase.data.repository.AuthRepository
@@ -51,11 +53,15 @@ class PubliNListActivity : AppCompatActivity() {
         val authRepository = AuthRepository(firebaseAuth, firestore)
         val publiNRepository = PubliNRepository(firestore)
 
+
+
         // Inicializa el ViewModel con una Factory
         publiNListViewModel = ViewModelProvider(
             this,
             PubliNListViewModelFactory(publiNRepository, authRepository)
         ).get(PubliNListViewModel::class.java)
+
+
 
         // Configura el RecyclerView y el Adapter
         setupRecyclerView()
@@ -65,8 +71,15 @@ class PubliNListActivity : AppCompatActivity() {
 
         // Configura los listeners de los botones
         setupButtonListeners()
+        val btnForo = findViewById<Button>(R.id.btnFORO)
+        btnForo.setOnClickListener {
+            val intent = Intent(this, ForoActivity::class.java)
+            startActivity(intent)
+        }
+
 
         initUI()
+
     }
 
     private fun initUI() {

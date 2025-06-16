@@ -4,6 +4,7 @@ plugins {
 
     // Add the Google services Gradle plugin
     id("com.google.gms.google-services")
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -38,6 +39,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 }
 
@@ -48,9 +50,21 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.google.android.material:material:1.11.0")
+    implementation(libs.imageslideshow)
+
+
+
+
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
@@ -58,8 +72,6 @@ dependencies {
     // no especificas versiones individuales de biblioteca
     // cuando declaras las dependencias de la biblioteca de Firebase
     // en el archivo de configuración de compilación de Gradle
-
-
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
@@ -79,4 +91,8 @@ dependencies {
     // Corrutinas de Kotlin (para operaciones asíncronas)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }
