@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
@@ -31,9 +31,15 @@
         <activity
             android:name=".ui.auth.RegisterActivity"
             android:exported="false" />
-        <activity android:name=".ui.comercio.ComercioActivity" android:exported="false"/>
-        <activity android:name=".ui.comercio.AddProductActivity" android:exported="false" />
-        <activity android:name=".ui.comercio.DetalleComercioActivity" android:exported="false" />
+        <activity
+            android:name=".ui.comercio.ComercioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.comercio.AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.comercio.DetalleComercioActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.auth.LoginActivity"
             android:exported="true">
