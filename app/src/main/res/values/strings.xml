@@ -38,5 +38,16 @@
     <string name="seleccionar_imagen">Seleccionar Imagen</string>
     <string name="imagen_seleccionada">Imagen seleccionada</string>
     <string name="Ingresa_nombre">Nombre</string>
+    <string name="verificar_contrase_a">Verificar contraseña</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="registro">Registro</string>
+    <string name="ingresa_correo">Ingresa Correo</string>
+    <string name="tus_publicaciones">Tus publicaciones</string>
+    <string name="back">Back</string>
+    <string name="nombres">Nombres</string>
+    <string name="ingresa_tu_correo">Ingresa tu correo</string>
+    <string name="email">Email</string>
+    <string name="editar_imagen">Editar imagen</string>
+    <string name="guardar_cambios">Guardar Cambios</string>
 
 </resources>

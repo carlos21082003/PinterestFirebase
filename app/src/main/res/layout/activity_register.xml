@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registro"
+            android:text="@string/registro"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:textColorHint="@color/TextCamposGris"
-            android:hint="Correo">
+            android:hint="@string/correo_electronico">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmailRegister"
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/TextCamposGris"
-            android:hint="Nombre">
+            android:hint="@string/Ingresa_nombre">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etFirstName"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:textColorHint="@color/TextCamposGris"
-            android:hint="Apellidos">
+            android:hint="@string/apellidos">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etLastName"
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:textColorHint="@color/TextCamposGris"
-            android:hint="Contraseña"
+            android:hint="@string/contraseña"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/Ojito">
 
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:textColorHint="@color/TextCamposGris"
-            android:hint="Verificar contraseña"
+            android:hint="@string/verificar_contrase_a"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/Ojito">
 
@@ -139,7 +139,7 @@
             android:id="@+id/btnSelectImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar Imagen"
+            android:text="@string/seleccionar_imagen"
             android:backgroundTint="@color/RedButtons"
             style="@style/Widget.MaterialComponents.Button"/>
         <!-- Botón Registrarse -->
@@ -147,7 +147,7 @@
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registrarse"
+            android:text="@string/registrarse"
             android:backgroundTint="@color/RedButtons"
             style="@style/Widget.MaterialComponents.Button"/>
 

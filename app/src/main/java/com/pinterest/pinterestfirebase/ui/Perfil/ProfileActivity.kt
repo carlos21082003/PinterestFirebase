@@ -67,7 +67,6 @@ class ProfileActivity: AppCompatActivity() {
         edtEmail = findViewById(R.id.et_email)
         imgPreview = findViewById(R.id.profile_image)
         btnPublicaciones = findViewById(R.id.toolbar)
-        btnProductos = findViewById(R.id.btn_productos)
         btnGuardar = findViewById(R.id.btn_editar)
         btnNewImage = findViewById(R.id.btn_new_profile)
 
@@ -95,14 +94,11 @@ class ProfileActivity: AppCompatActivity() {
             setupChangeListeners()
         }
 
-        btnProductos.setOnClickListener {
+
+        btnPublicaciones.setOnClickListener {
             val intent = Intent(this, PubliNListActivity::class.java)
             startActivity(intent)
             finish()
-        }
-
-        btnPublicaciones.setOnClickListener {
-            // Acciones para publicaciones
         }
 
         btnNewImage.setOnClickListener {
