@@ -7,7 +7,7 @@
     android:gravity="center"
     android:padding="16dp"
 
-     android:background="@color/back"
+    android:background="@color/back"
     tools:context=".ui.auth.LoginActivity">
 
     <!-- Imagen arriba del texto "Bienvenido" -->
@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sin_cuenta_registrar"
-        android:textColor="@color/white"
+        android:textColor="@color/Letras"
         android:textSize="16sp"
         android:clickable="true"
         android:focusable="true"

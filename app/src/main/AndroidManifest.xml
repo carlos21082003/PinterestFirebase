@@ -17,7 +17,7 @@
         android:theme="@style/Theme.PinterestFirebase"
         tools:targetApi="31">
         <activity
-            android:name=".ui.publicacion.ProfileActivity"
+            android:name=".ui.Perfil.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.publicacion.ElegirTipoActivity"

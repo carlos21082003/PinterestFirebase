@@ -1,6 +1,9 @@
 package com.pinterest.pinterestfirebase.data.repository
 
+import android.net.Uri
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
@@ -15,24 +18,28 @@ class AuthRepository(
      * @param password La contraseña del usuario.
      * @return Un objeto Result<Boolean> que indica éxito o fracaso.
      */
-    suspend fun registerUser(email: String, password: String): Result<Boolean> {
+    suspend fun registerUser(email: String, password: String, firstName: String, lastName: String,ImageUrl: String ): Result<Boolean> {
         return try {
-            // Crea el usuario con correo y contraseña
-            val authResult = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-            val user = authResult.user
+            // Crea el usuario solo con email y contraseña
 
-            // Si el usuario se creó correctamente, puedes guardar información adicional en Firestore
+            val authResult = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+            val user = authResult.user?: throw Exception("Usuario no creado")
+
+            // Si el usuario se creó correctamente, guarda información adicional en Firestore
             user?.let { firebaseUser ->
                 val userData = hashMapOf(
-                    "email" to firebaseUser.email,
+                    "firstName" to firstName,
+                    "lastName" to lastName,
+                    "imagenUrl" to ImageUrl,
                     "createdAt" to System.currentTimeMillis()
-                    // Puedes añadir más campos de perfil aquí si es necesario
                 )
                 // Guarda el UID del usuario como ID del documento en la colección 'users'
                 firestore.collection("users").document(firebaseUser.uid).set(userData).await()
             }
+
             Result.success(true) // Registro exitoso
         } catch (e: Exception) {
+            Log.e("RegisterError", "Error al registrar usuario: ${e.message}", e)
             e.printStackTrace()
             Result.failure(e) // Fallo en el registro
         }
@@ -75,5 +82,37 @@ class AuthRepository(
      */
     fun isUserLoggedIn(): Boolean {
         return firebaseAuth.currentUser != null
+    }
+
+
+    /**
+     * Obtiene los datos del usuario actual desde Firestore
+     */
+    suspend fun getUserData(userId: String): Result<Map<String, Any>> {
+        return try {
+            val document = firestore.collection("users").document(userId).get().await()
+            if (document.exists()) {
+                Result.success(document.data!!)
+            } else {
+                Result.failure(Exception("Usuario no encontrado"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    /**
+     * Actualiza los datos del usuario en Firestore
+     */
+    suspend fun updateUserData(
+        userId: String,
+        updates: Map<String, Any>
+    ): Result<Boolean> {
+        return try {
+            firestore.collection("users").document(userId).update(updates).await()
+            Result.success(true)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }

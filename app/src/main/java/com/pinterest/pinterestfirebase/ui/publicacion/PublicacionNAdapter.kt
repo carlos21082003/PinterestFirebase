@@ -77,20 +77,19 @@ class PublicacionNAdapter  (
     }
 }
 
-    /**
-     * Callback para calcular las diferencias entre dos listas de mascotas.
-     * Mejora el rendimiento del RecyclerView al solo actualizar los elementos que han cambiado.
-     */
+/**
+ * Callback para calcular las diferencias entre dos listas de mascotas.
+ * Mejora el rendimiento del RecyclerView al solo actualizar los elementos que han cambiado.
+ */
 
-    class PubliNDiffCallback : DiffUtil.ItemCallback<PublicacionN>() {
-        override fun areItemsTheSame(oldItem: PublicacionN, newItem: PublicacionN): Boolean {
-            // Compara si los IDs de los elementos son los mismos (mismo elemento)
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: PublicacionN, newItem: PublicacionN): Boolean {
-            // Compara si el contenido de los elementos es el mismo (no hay cambios visuales)
-            return oldItem == newItem
-        }
+class PubliNDiffCallback : DiffUtil.ItemCallback<PublicacionN>() {
+    override fun areItemsTheSame(oldItem: PublicacionN, newItem: PublicacionN): Boolean {
+        // Compara si los IDs de los elementos son los mismos (mismo elemento)
+        return oldItem.id == newItem.id
     }
 
+    override fun areContentsTheSame(oldItem: PublicacionN, newItem: PublicacionN): Boolean {
+        // Compara si el contenido de los elementos es el mismo (no hay cambios visuales)
+        return oldItem == newItem
+    }
+}
