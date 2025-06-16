@@ -31,6 +31,9 @@
         <activity
             android:name=".ui.auth.RegisterActivity"
             android:exported="false" />
+        <activity android:name=".ui.comercio.ComercioActivity" android:exported="false"/>
+        <activity android:name=".ui.comercio.AddProductActivity" android:exported="false" />
+        <activity android:name=".ui.comercio.DetalleComercioActivity" android:exported="false" />
         <activity
             android:name=".ui.auth.LoginActivity"
             android:exported="true">

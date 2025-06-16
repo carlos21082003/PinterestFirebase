@@ -6,7 +6,7 @@
         android:title="Inicio" />
     <item
         android:id="@+id/nav_search"
-        android:icon="@drawable/buscar"
+        android:icon="@drawable/noticias"
         android:title="Busqueda" />
     <item
         android:id="@+id/nav_add"

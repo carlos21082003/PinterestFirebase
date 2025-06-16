@@ -7,6 +7,7 @@
     <color name="TextCamposGris">#FF818181</color>
     <color name="RedButtons">#FFE60024</color>
     <color name="GrisButtons">#FF74756F</color>
+    <color name="transparent">#00000000</color>
     <color name="Letras">#FFFFFF</color>
     <color name="Ojito">#B3AEAE</color>
 </resources>

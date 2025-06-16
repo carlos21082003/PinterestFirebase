@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pinterest.pinterestfirebase.R
 import com.pinterest.pinterestfirebase.ui.Perfil.ProfileActivity
+import com.pinterest.pinterestfirebase.ui.comercio.ComercioActivity
 
 
 class ElegirTipoActivity : AppCompatActivity() {
@@ -43,6 +44,10 @@ class ElegirTipoActivity : AppCompatActivity() {
                 }
                 R.id.nav_profile -> {
                     startActivity(Intent(this, ProfileActivity::class.java))
+                    true
+                }
+                R.id.nav_comercio -> {
+                    startActivity(Intent(this, ComercioActivity::class.java))
                     true
                 }
                 else -> false
