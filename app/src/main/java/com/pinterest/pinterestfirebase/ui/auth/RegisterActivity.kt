@@ -1,26 +1,40 @@
 package com.pinterest.pinterestfirebase.ui.auth
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.pinterest.pinterestfirebase.R
-import com.pinterest.pinterestfirebase.data.model.PublicacionN
 import com.pinterest.pinterestfirebase.data.repository.AuthRepository
 import com.pinterest.pinterestfirebase.databinding.ActivityRegisterBinding
 import com.pinterest.pinterestfirebase.ui.publicacion.PubliNListActivity
+import com.pinterest.pinterestfirebase.data.repository.ImagenManager
+import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
+    private lateinit var imgPreview: ImageView
+    private var imagenUri: Uri? = null
+
+    private val seleccionarImagenLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
+        if (uri != null) {
+            imagenUri = uri
+            imgPreview.setImageURI(uri)
+        }
+    }
 
     private lateinit var binding: ActivityRegisterBinding
-
     private lateinit var registerViewModel: RegisterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +43,8 @@ class RegisterActivity : AppCompatActivity() {
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        imgPreview = binding.imagePreview
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -59,31 +75,65 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-
-        // Configura el listener para el botón de registro
-        binding.btnRegister.setOnClickListener {
-            val email = binding.etEmailRegister.text.toString().trim()
-            val password = binding.etPasswordRegister.text.toString().trim()
-            val confirmPassword = binding.etConfirmPasswordRegister.text.toString().trim()
-
-            if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            if (password != confirmPassword) {
-                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            // Puedes añadir más validaciones de contraseña aquí (ej. longitud mínima)
-            if (password.length < 6) {
-                Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            registerViewModel.register(email, password)
+        binding.btnSelectImage.setOnClickListener {
+            seleccionarImagenLauncher.launch("image/*")
         }
+
+
+        // Configura el listener para el botón de registro  setOnClickListener
+
+        binding.btnRegister.setOnClickListener {
+            lifecycleScope.launch {
+                val email = binding.etEmailRegister.text.toString().trim()
+                val password = binding.etPasswordRegister.text.toString().trim()
+                val confirmPassword = binding.etConfirmPasswordRegister.text.toString().trim()
+                val firstName = binding.etFirstName.text.toString().trim()
+                val lastName = binding.etLastName.text.toString().trim()
+
+                // Validaciones
+                if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() ||
+                    firstName.isEmpty() || lastName.isEmpty()) {
+                    Toast.makeText(this@RegisterActivity, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+
+                if (password != confirmPassword) {
+                    Toast.makeText(this@RegisterActivity, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+
+                if (password.length < 6) {
+                    Toast.makeText(this@RegisterActivity, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+
+                if (firstName.length < 2) {
+                    binding.etFirstName.error = "Nombre demasiado corto"
+                    return@launch
+                }
+
+                if (lastName.length < 2) {
+                    binding.etLastName.error = "Apellido demasiado corto"
+                    return@launch
+                }
+
+                if (imagenUri == null) {
+                    Toast.makeText(this@RegisterActivity, "Selecciona una imagen de perfil", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+
+                val rutaImagenLocal = ImagenManager.convertirImagenABase64(contentResolver, imagenUri!!)
+
+                if (rutaImagenLocal == null) {
+                    Toast.makeText(this@RegisterActivity, "Error al procesar la imagen", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+
+                // Llamada al ViewModel con todos los datos
+                registerViewModel.register(email, password, firstName, lastName, rutaImagenLocal)
+            }
+        }
+
 
         // Configura el listener para el texto de inicio de sesión
         binding.tvLogin.setOnClickListener {

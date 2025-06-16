@@ -61,6 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Campos -->
+
     <Button
         android:id="@+id/btn_new_profile"
         android:layout_width="wrap_content"
@@ -68,8 +69,8 @@
         android:backgroundTint="#555555"
         android:text="Seleccionar imagen"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="5dp" />
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="144dp" />
 
     <EditText
         android:id="@+id/et_email"

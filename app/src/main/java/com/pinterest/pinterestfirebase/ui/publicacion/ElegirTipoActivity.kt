@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pinterest.pinterestfirebase.R
+import com.pinterest.pinterestfirebase.ui.Perfil.ProfileActivity
 
 class ElegirTipoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

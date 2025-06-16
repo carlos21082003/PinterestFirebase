@@ -8,6 +8,8 @@
     <string name="crear_nueva_cuenta">Crear Nueva Cuenta</string>
     <string name="contraseña">Contraseña</string>
     <string name="registrarse">Registrarse</string>
+    <string name="first_name">Nombre</string>
+    <string name="last_name">Apellido</string>
     <string name="ya_tienes_una_cuenta">¿Ya tienes una cuenta? Inicia sesión</string>
     <string name="confirmar_contraseña">Confirmar Contraseña</string>
     <string name="cerrar_sesion">Cerrar Sesión</string>
@@ -24,11 +26,14 @@
     <string name="publicar">Publicar</string>
     <string name="nombre_de_la_publicacion">Nombre de la publicacion</string>
     <string name="descripcion">Descripcion</string>
-    <string name="nombre">Nombre</string>
+    <string name="Nombre_Usuario">Nombre</string>
+    <string name="Apellidos">Apellidos</string>
     <string name="editar_publicacion_normal">Editar publicacion normal</string>
     <string name="eliminar_publicacion_normal">Eliminar publicacion normal</string>
     <string name="agregar_publicaciones">Agregar Publicaciones</string>
     <string name="subir">Subir</string>
     <string name="perfil">Perfil</string>
     <string name="editar">Editar</string>
+    <string name="Ingresa_nombre">Nombre</string>
+
 </resources>

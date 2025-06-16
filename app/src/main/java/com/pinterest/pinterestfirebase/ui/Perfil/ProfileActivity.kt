@@ -1,22 +1,32 @@
 package com.pinterest.pinterestfirebase.ui.Perfil
 
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Base64
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import java.io.File
 import coil.load
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 import com.pinterest.pinterestfirebase.R
+import com.pinterest.pinterestfirebase.data.repository.ImagenManager
 import com.pinterest.pinterestfirebase.data.repository.UserRepository
 import com.pinterest.pinterestfirebase.ui.publicacion.PubliNListActivity
+import java.io.FileOutputStream
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
 
 class ProfileActivity: AppCompatActivity() {
 
@@ -29,12 +39,21 @@ class ProfileActivity: AppCompatActivity() {
     private lateinit var btnGuardar: Button
     private lateinit var btnNewImage: Button
 
-    private var imagenUrlActual: String? = null
+    private var imagenUrlActual: Uri? = null
     private var imagenOriginal: String? = null
 
     private var nombreOriginal = ""
     private var apellidoOriginal = ""
     private var emailOriginal = ""
+
+    private val seleccionarImagenLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
+        if (uri != null) {
+            imagenUrlActual = uri
+            imgPreview.setImageURI(uri)
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,21 +85,13 @@ class ProfileActivity: AppCompatActivity() {
                 apellidoOriginal = usuario.lastName ?: ""
                 emailOriginal = usuario.email ?: ""
                 imagenOriginal = usuario.imagenUrl
-                imagenUrlActual = usuario.imagenUrl
+                imagenUrlActual = Uri.parse(usuario.imagenUrl)
 
-                usuario.imagenUrl?.let { ruta ->
-                    val file = File(ruta)
-                    if (file.exists()) {
-                        imgPreview.load(file)
-                    } else {
-                        Log.w("ProfileActivity", "No se encontró la imagen local: $ruta")
-                    }
-                }
+                ImagenManager.cargarImagenDesdeBase64(usuario.imagenUrl!!, imgPreview)
             } else {
                 Toast.makeText(this, "No se pudo cargar el perfil del usuario", Toast.LENGTH_SHORT).show()
             }
 
-            // IMPORTANTE: activar los listeners solo después de tener datos cargados
             setupChangeListeners()
         }
 
@@ -93,15 +104,48 @@ class ProfileActivity: AppCompatActivity() {
         btnPublicaciones.setOnClickListener {
             // Acciones para publicaciones
         }
-    }
 
+        btnNewImage.setOnClickListener {
+            seleccionarImagenLauncher.launch("image/*")
+        }
+
+        btnGuardar.setOnClickListener {
+            lifecycleScope.launch {
+                val nuevoNombre = edtNombre.text.toString()
+                val nuevoApellido = edtLastname.text.toString()
+                val nuevoEmail = edtEmail.text.toString()
+
+                var rutaImagen: String? = imagenOriginal
+
+                if (imagenUrlActual.toString() != imagenOriginal) {
+                    rutaImagen = ImagenManager.convertirImagenABase64(contentResolver, imagenUrlActual!!)
+                }
+
+                userRepository.actualizarCuenta(
+                    email = nuevoEmail,
+                    firstName = nuevoNombre,
+                    lastName = nuevoApellido,
+                    imageUrl = rutaImagen ?: ""
+                )
+
+                nombreOriginal = nuevoNombre
+                apellidoOriginal = nuevoApellido
+                emailOriginal = nuevoEmail
+                imagenOriginal = rutaImagen
+
+                btnGuardar.visibility = Button.GONE
+                Toast.makeText(this@ProfileActivity, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
 
     private fun setupChangeListeners() {
         val checkCambios: () -> Unit = {
             val nombreCambiado = edtNombre.text.toString() != nombreOriginal
             val apellidoCambiado = edtLastname.text.toString() != apellidoOriginal
             val emailCambiado = edtEmail.text.toString() != emailOriginal
-            val imagenCambiada = imagenUrlActual != imagenOriginal
+            val imagenCambiada = imagenUrlActual.toString() != imagenOriginal
 
             btnGuardar.visibility = if (nombreCambiado || apellidoCambiado || emailCambiado || imagenCambiada) {
                 Button.VISIBLE
