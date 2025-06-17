@@ -5,7 +5,7 @@
     android:id="@+id/layoutComercio"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_tertiary0"
+    android:background="@color/back"
     tools:context=".ui.comercio.ComercioActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="Comercio"
+        android:text="@string/comercio"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:padding="8dp"
-        android:contentDescription="Lista de productos disponibles"
+        android:contentDescription="@string/lista_de_productos_disponibles"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         app:layout_constraintTop_toBottomOf="@id/titleText"
@@ -41,7 +41,7 @@
         android:id="@+id/btnAddProduct"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Agregar Producto"
+        android:text="@string/agregar_producto"
         android:textColor="@android:color/white"
         android:backgroundTint="@color/RedButtons"
         android:layout_marginHorizontal="32dp"

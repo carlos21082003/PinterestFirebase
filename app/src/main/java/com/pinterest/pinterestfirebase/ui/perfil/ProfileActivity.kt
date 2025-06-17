@@ -1,13 +1,10 @@
-package com.pinterest.pinterestfirebase.ui.Perfil
+package com.pinterest.pinterestfirebase.ui.perfil
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Base64
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,17 +12,15 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import java.io.File
-import coil.load
-import com.google.firebase.storage.FirebaseStorage
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pinterest.pinterestfirebase.R
 import com.pinterest.pinterestfirebase.data.repository.ImagenManager
 import com.pinterest.pinterestfirebase.data.repository.UserRepository
+import com.pinterest.pinterestfirebase.ui.comercio.ComercioActivity
+import com.pinterest.pinterestfirebase.ui.foro.ForoActivity
+import com.pinterest.pinterestfirebase.ui.publicacion.ElegirTipoActivity
 import com.pinterest.pinterestfirebase.ui.publicacion.PubliNListActivity
-import java.io.FileOutputStream
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 
 class ProfileActivity: AppCompatActivity() {
@@ -134,6 +129,37 @@ class ProfileActivity: AppCompatActivity() {
             }
         }
 
+        initUI()
+    }
+
+    //fun para que el nav funcione
+    private fun initUI() {
+
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        bottomNavigation.selectedItemId = R.id.nav_profile
+
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_profile -> {
+                    // Ya estamos en el perfil, no hacer nada más
+                    true
+                }
+                R.id.nav_add -> {
+                    startActivity(Intent(this, ElegirTipoActivity::class.java))
+                    true
+                }
+                R.id.nav_comercio -> {
+                    startActivity(Intent(this, ComercioActivity::class.java))
+                    true
+                }
+                R.id.nav_foro -> {
+                    startActivity(Intent(this, ForoActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setupChangeListeners() {
@@ -163,7 +189,7 @@ class ProfileActivity: AppCompatActivity() {
         edtLastname.addTextChangedListener(watcher)
         edtEmail.addTextChangedListener(watcher)
 
-        // Si cambias la imagen manualmente, deberías llamar a checkCambios()
+        // Si cambias la imagen manualmente,llama a checkCambios()
         checkCambios()
     }
 }

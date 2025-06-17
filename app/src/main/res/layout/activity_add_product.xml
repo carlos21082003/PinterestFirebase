@@ -26,13 +26,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="16dp"
-            android:contentDescription="Botón de retroceso" />
+            android:contentDescription="@string/bot_n_de_retroceso" />
 
         <TextView
             android:id="@+id/screen_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Agregar"
+            android:text="@string/agregar_un_producto"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -61,7 +61,7 @@
                 android:id="@+id/input_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Agregar nombre producto"
+                android:hint="@string/agregar_nombre_producto"
                 android:textColorHint="#CCCCCC"
                 android:textColor="@android:color/white"
                 android:padding="12dp"
@@ -72,7 +72,7 @@
                 android:id="@+id/input_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Agregar Precio"
+                android:hint="@string/agregar_precio"
                 android:textColorHint="#CCCCCC"
                 android:textColor="@android:color/white"
                 android:inputType="numberDecimal"
@@ -84,7 +84,7 @@
                 android:id="@+id/input_stock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Agregar Stock"
+                android:hint="@string/agregar_stock"
                 android:textColorHint="#CCCCCC"
                 android:textColor="@android:color/white"
                 android:inputType="number"
@@ -96,7 +96,7 @@
                 android:id="@+id/input_detail"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:hint="Agregar detalle"
+                android:hint="@string/agregar_detalle"
                 android:textColorHint="#CCCCCC"
                 android:textColor="@android:color/white"
                 android:gravity="top|start"
@@ -110,7 +110,7 @@
                 android:id="@+id/input_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Elegir categoria"
+                android:hint="@string/agregar_categoria"
                 android:textColorHint="#CCCCCC"
                 android:textColor="@android:color/white"
                 android:padding="12dp"
@@ -121,7 +121,7 @@
                 android:id="@+id/add_image_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Agregar imagen"
+                android:text="@string/seleccionar_imagen"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:layout_marginBottom="16dp" />
@@ -141,7 +141,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:contentDescription="Añadir imagen principal" />
+                    android:contentDescription="@string/a_adir_imagen_principal" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -160,7 +160,7 @@
                     android:src="@drawable/ic_add_white_24dp"
                     android:scaleType="centerInside"
                     android:layout_marginEnd="16dp"
-                    android:contentDescription="Añadir imagen secundaria 1" />
+                    android:contentDescription="@string/a_adir_imagen_secundaria_1" />
 
                 <ImageButton
                     android:id="@+id/add_image_2"
@@ -170,7 +170,7 @@
                     android:src="@drawable/ic_add_white_24dp"
                     android:scaleType="centerInside"
                     android:layout_marginEnd="16dp"
-                    android:contentDescription="Añadir imagen secundaria 2" />
+                    android:contentDescription="@string/a_adir_imagen_secundaria_2" />
 
                 <ImageButton
                     android:id="@+id/add_image_3"
@@ -179,7 +179,7 @@
                     android:background="@drawable/rounded_button_dark"
                     android:src="@drawable/ic_add_white_24dp"
                     android:scaleType="centerInside"
-                    android:contentDescription="Añadir imagen secundaria 3" />
+                    android:contentDescription="@string/a_adir_imagen_secundaria_3" />
 
             </LinearLayout>
 
@@ -187,10 +187,11 @@
                 android:id="@+id/publish_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Publicar"
-                android:backgroundTint="#FF0000"
+                android:text="@string/publicar"
+                android:backgroundTint="@color/RedButtons"
                 android:textColor="@android:color/white"
                 android:paddingVertical="12dp"
+                app:cornerRadius="12dp"
                 android:textSize="18sp"
                 android:layout_marginBottom="16dp" />
 

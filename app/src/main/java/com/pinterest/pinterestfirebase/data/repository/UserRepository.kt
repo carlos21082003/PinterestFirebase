@@ -1,9 +1,8 @@
 package com.pinterest.pinterestfirebase.data.repository
 
-import android.net.Uri
+
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.pinterest.pinterestfirebase.data.model.Usuarios
 import kotlinx.coroutines.tasks.await
@@ -21,7 +20,7 @@ class UserRepository() {
             user.updateEmail(email).await()
         }
 
-        // ✅ Actualiza también Firestore
+        // Actualiza también Firestore
         val userData = mapOf(
             "firstName" to firstName,
             "lastName" to lastName,

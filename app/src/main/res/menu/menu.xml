@@ -5,9 +5,9 @@
         android:icon="@drawable/home"
         android:title="Inicio" />
     <item
-        android:id="@+id/nav_search"
+        android:id="@+id/nav_foro"
         android:icon="@drawable/noticias"
-        android:title="Busqueda" />
+        android:title="Foro" />
     <item
         android:id="@+id/nav_add"
         android:icon="@drawable/add"

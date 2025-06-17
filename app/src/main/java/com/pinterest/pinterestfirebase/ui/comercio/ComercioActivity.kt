@@ -8,10 +8,13 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import com.pinterest.pinterestfirebase.R
+import com.pinterest.pinterestfirebase.ui.perfil.ProfileActivity
+import com.pinterest.pinterestfirebase.ui.foro.ForoActivity
 import com.pinterest.pinterestfirebase.ui.product.ProductAdapter
+import com.pinterest.pinterestfirebase.ui.publicacion.ElegirTipoActivity
 
 class ComercioActivity : AppCompatActivity() {
 
@@ -44,6 +47,37 @@ class ComercioActivity : AppCompatActivity() {
         }
 
         cargarProductosDesdeFirebase()
+        initUI()
+    }
+
+    //fun para que el nav funcione
+    private fun initUI() {
+
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        bottomNavigation.selectedItemId = R.id.nav_comercio
+
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_comercio -> {
+                    // Ya estamos en el perfil, no hacer nada más
+                    true
+                }
+                R.id.nav_profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    true
+                }
+                R.id.nav_add -> {
+                    startActivity(Intent(this, ElegirTipoActivity::class.java))
+                    true
+                }
+                R.id.nav_foro -> {
+                    startActivity(Intent(this, ForoActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun cargarProductosDesdeFirebase() {

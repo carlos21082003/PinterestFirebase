@@ -49,5 +49,29 @@
     <string name="email">Email</string>
     <string name="editar_imagen">Editar imagen</string>
     <string name="guardar_cambios">Guardar Cambios</string>
+    <string name="nombre_producto">Nombre Producto</string>
+    <string name="s_00">s/00</string>
+    <string name="a_adir_imagen_secundaria_3">Añadir imagen secundaria 3</string>
+    <string name="a_adir_imagen_secundaria_2">Añadir imagen secundaria 2</string>
+    <string name="a_adir_imagen_secundaria_1">Añadir imagen secundaria 1</string>
+    <string name="a_adir_imagen_principal">Añadir imagen principal</string>
+    <string name="agregar_categoria">Agregar categoria</string>
+    <string name="agregar_detalle">Agregar detalle</string>
+    <string name="agregar_stock">Agregar Stock</string>
+    <string name="agregar_precio">Agregar Precio</string>
+    <string name="agregar_nombre_producto">Agregar nombre producto</string>
+    <string name="agregar_un_producto">Agregar un producto</string>
+    <string name="bot_n_de_retroceso">Botón de retroceso</string>
+    <string name="comercio">Comercio</string>
+    <string name="lista_de_productos_disponibles">Lista de productos disponibles</string>
+    <string name="agregar_producto">Agregar Producto</string>
+    <string name="precio_s">Precio: S/</string>
+    <string name="_00_00">00.00</string>
+    <string name="stock">Stock:</string>
+    <string name="_0">0</string>
+    <string name="detalles">Detalles:</string>
+    <string name="descripci_n_del_producto">Descripción del producto</string>
+    <string name="comprar">Comprar</string>
+    <string name="card_productos">Card productos</string>
 
 </resources>
