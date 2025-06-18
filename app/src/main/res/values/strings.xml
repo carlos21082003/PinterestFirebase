@@ -73,5 +73,7 @@
     <string name="descripci_n_del_producto">Descripción del producto</string>
     <string name="comprar">Comprar</string>
     <string name="card_productos">Card productos</string>
+    <string name="imagen_de_inicio">Imagen de inicio</string>
+    <string name="imagen_uno">Imagen uno</string>
 
 </resources>
