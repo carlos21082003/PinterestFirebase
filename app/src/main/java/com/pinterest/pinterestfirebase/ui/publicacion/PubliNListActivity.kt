@@ -23,6 +23,8 @@ import com.pinterest.pinterestfirebase.data.repository.AuthRepository
 import com.pinterest.pinterestfirebase.data.repository.PubliNRepository
 import com.pinterest.pinterestfirebase.databinding.ActivityPubliNlistBinding
 import com.pinterest.pinterestfirebase.ui.auth.LoginActivity
+import com.pinterest.pinterestfirebase.ui.comercio.ComercioActivity
+import com.pinterest.pinterestfirebase.ui.foro.ForoActivity
 
 class PubliNListActivity : AppCompatActivity() {
 
@@ -73,17 +75,23 @@ class PubliNListActivity : AppCompatActivity() {
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-//        bottomNavigation.selectedItemId = R.id.nav_profile
+       bottomNavigation.selectedItemId = R.id.nav_profile
 
-        // funcion para ir a agregar desde el nav
+        val activityMap = mapOf(
+            R.id.nav_foro to ForoActivity::class.java,
+            R.id.nav_comercio to ComercioActivity::class.java,
+            R.id.nav_add to ElegirTipoActivity::class.java,
+            R.id.nav_home to HomeActivity::class.java
+        )
+
         bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-
-                R.id.nav_add -> {
-                    startActivity(Intent(this, ElegirTipoActivity ::class.java))
+            if (item.itemId == R.id.nav_profile) {
+                true
+            } else {
+                activityMap[item.itemId]?.let { activityClass ->
+                    startActivity(Intent(this, activityClass))
                     true
-                }
-                else -> false
+                } ?: false
             }
         }
     }

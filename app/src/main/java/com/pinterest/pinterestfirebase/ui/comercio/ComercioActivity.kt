@@ -15,6 +15,7 @@ import com.pinterest.pinterestfirebase.ui.perfil.ProfileActivity
 import com.pinterest.pinterestfirebase.ui.foro.ForoActivity
 import com.pinterest.pinterestfirebase.ui.product.ProductAdapter
 import com.pinterest.pinterestfirebase.ui.publicacion.ElegirTipoActivity
+import com.pinterest.pinterestfirebase.ui.publicacion.HomeActivity
 
 class ComercioActivity : AppCompatActivity() {
 
@@ -57,25 +58,21 @@ class ComercioActivity : AppCompatActivity() {
 
         bottomNavigation.selectedItemId = R.id.nav_comercio
 
+        val activityMap = mapOf(
+            R.id.nav_profile to ProfileActivity::class.java,
+            R.id.nav_foro to ForoActivity::class.java,
+            R.id.nav_add to ElegirTipoActivity::class.java,
+            R.id.nav_home to HomeActivity::class.java
+        )
+
         bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_comercio -> {
-                    // Ya estamos en el perfil, no hacer nada más
+            if (item.itemId == R.id.nav_comercio) {
+                true
+            } else {
+                activityMap[item.itemId]?.let { activityClass ->
+                    startActivity(Intent(this, activityClass))
                     true
-                }
-                R.id.nav_profile -> {
-                    startActivity(Intent(this, ProfileActivity::class.java))
-                    true
-                }
-                R.id.nav_add -> {
-                    startActivity(Intent(this, ElegirTipoActivity::class.java))
-                    true
-                }
-                R.id.nav_foro -> {
-                    startActivity(Intent(this, ForoActivity::class.java))
-                    true
-                }
-                else -> false
+                } ?: false
             }
         }
     }
