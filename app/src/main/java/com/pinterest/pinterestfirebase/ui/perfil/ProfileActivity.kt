@@ -17,7 +17,7 @@ import com.pinterest.pinterestfirebase.R
 import com.pinterest.pinterestfirebase.data.repository.ImagenManager
 import com.pinterest.pinterestfirebase.data.repository.UserRepository
 import com.pinterest.pinterestfirebase.ui.comercio.ComercioActivity
-import com.pinterest.pinterestfirebase.ui.foro.ForoActivity
+import com.pinterest.pinterestfirebase.ui.foro.CuidarActivity
 import com.pinterest.pinterestfirebase.ui.publicacion.ElegirTipoActivity
 import com.pinterest.pinterestfirebase.ui.publicacion.HomeActivity
 import com.pinterest.pinterestfirebase.ui.publicacion.PubliNListActivity
@@ -141,7 +141,7 @@ class ProfileActivity: AppCompatActivity() {
         bottomNavigation.selectedItemId = R.id.nav_profile
 
         val activityMap = mapOf(
-            R.id.nav_foro to ForoActivity::class.java,
+            R.id.nav_foro to CuidarActivity::class.java,
             R.id.nav_comercio to ComercioActivity::class.java,
             R.id.nav_add to ElegirTipoActivity::class.java,
             R.id.nav_home to HomeActivity::class.java

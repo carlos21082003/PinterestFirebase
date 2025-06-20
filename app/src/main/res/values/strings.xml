@@ -75,5 +75,12 @@
     <string name="card_productos">Card productos</string>
     <string name="imagen_de_inicio">Imagen de inicio</string>
     <string name="imagen_uno">Imagen uno</string>
-
+    <string name="continuar">Continuar</string>
+    <string name="reciclar_texto">Reciclar transforma los residuos en nuevos recursos, evitando la acumulación de basura y el desperdicio de materiales. Separar correctamente los desechos es un pequeño gesto que genera un gran impacto en el cuidado del planeta</string>
+    <string name="reutilizar_texto">Reutilizar objetos en lugar de desecharlos es una forma efectiva de reducir la contaminación. Dar una segunda vida a lo que ya tenemos ayuda a construir un futuro más sostenible para todos.</string>
+    <string name="cuidar_texto">Cuidar el medio ambiente es responsabilidad de todos. Reducir, reutilizar y reciclar son acciones simples que ayudan a preservar nuestro planeta para las futuras generaciones.</string>
+    <string name="card_publicaciones">Card publicaciones</string>
+    <string name="imagen_detalle">Imagen de la publicación</string>
+    <string name="nombre_publicacion">Nombre de la publicación</string>
+    <string name="descripcion_publicacion">Descripción de la publicación</string>
 </resources>

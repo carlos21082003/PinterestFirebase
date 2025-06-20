@@ -9,16 +9,16 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pinterest.pinterestfirebase.R
-import com.pinterest.pinterestfirebase.ui.perfil.ProfileActivity
 import com.pinterest.pinterestfirebase.ui.comercio.ComercioActivity
+import com.pinterest.pinterestfirebase.ui.perfil.ProfileActivity
 import com.pinterest.pinterestfirebase.ui.publicacion.ElegirTipoActivity
 import com.pinterest.pinterestfirebase.ui.publicacion.HomeActivity
 
-class ForoActivity : AppCompatActivity() {
+class ReciclarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_foro)
+        setContentView(R.layout.activity_reciclar)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -49,11 +49,6 @@ class ForoActivity : AppCompatActivity() {
                     true
                 } ?: false
             }
-        }
-        val btnContinuar = findViewById<Button>(R.id.btnContinuaru)
-        btnContinuar.setOnClickListener {
-            val intent = Intent(this, ReutilizarActivity::class.java)
-            startActivity(intent)
         }
     }
 }

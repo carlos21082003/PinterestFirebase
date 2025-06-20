@@ -23,7 +23,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCerrarSesion"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="50dp"
         android:layout_margin="16dp"
         android:backgroundTint="@color/RedButtons"
         android:text="@string/cerrar_sesion"

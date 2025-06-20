@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/back"
-    tools:context=".ui.foro.ForoActivity">
+    tools:context=".ui.foro.CuidarActivity">
 
     <TextView
         android:id="@+id/textoConciencia"
@@ -38,7 +38,7 @@
         android:id="@+id/textoCuidado"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Cuidar el medio ambiente es responsabilidad de todos. Reducir, reutilizar y reciclar son acciones simples que ayudan a preservar nuestro planeta para las futuras generaciones."
+        android:text="@string/cuidar_texto"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textColor="@color/white"
@@ -53,8 +53,9 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorForo"
         android:textStyle="bold"
+        android:textSize="18sp"
         android:textColor="@color/back"
-        android:text="Continuar ->"
+        android:text="@string/continuar"
         app:layout_constraintTop_toBottomOf="@id/textoCuidado"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

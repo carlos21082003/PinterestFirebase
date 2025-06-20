@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.pinterest.pinterestfirebase.R
 import com.pinterest.pinterestfirebase.ui.perfil.ProfileActivity
-import com.pinterest.pinterestfirebase.ui.foro.ForoActivity
+import com.pinterest.pinterestfirebase.ui.foro.CuidarActivity
 import com.pinterest.pinterestfirebase.ui.product.ProductAdapter
 import com.pinterest.pinterestfirebase.ui.publicacion.ElegirTipoActivity
 import com.pinterest.pinterestfirebase.ui.publicacion.HomeActivity
@@ -60,7 +60,7 @@ class ComercioActivity : AppCompatActivity() {
 
         val activityMap = mapOf(
             R.id.nav_profile to ProfileActivity::class.java,
-            R.id.nav_foro to ForoActivity::class.java,
+            R.id.nav_foro to CuidarActivity::class.java,
             R.id.nav_add to ElegirTipoActivity::class.java,
             R.id.nav_home to HomeActivity::class.java
         )

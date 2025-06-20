@@ -10,8 +10,33 @@ import kotlinx.coroutines.flow.callbackFlow
 
 
 class PubliNRepository(private val firestore: FirebaseFirestore) {
-    // pets: coleccion en FireSTore
+    // coleccion en FireSTore
     private val publinCollection = firestore.collection("Publicacion Normal")
+
+    fun getAllPublicaciones(): Flow<Result<List<PublicacionN>>> = callbackFlow {
+        val subscription = publinCollection
+            .orderBy("name", Query.Direction.ASCENDING) // o por fecha si luego lo agregas
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    trySend(Result.failure(e))
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null) {
+                    val publicaciones = snapshot.documents.mapNotNull { document ->
+                        document.toObject(PublicacionN::class.java)?.apply {
+                            this.id = document.id
+                        }
+                    }
+                    trySend(Result.success(publicaciones))
+                } else {
+                    trySend(Result.success(emptyList()))
+                }
+            }
+
+        awaitClose { subscription.remove() }
+    }
+
 
     /**
      * Añade una nueva mascota a Firestore.
